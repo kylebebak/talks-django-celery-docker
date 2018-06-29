@@ -1,15 +1,29 @@
 # Django y Celery en contenedores de Docker, para dev y producción
 ## 2018-06-28
 
-Crear y consumir web APIs es fundamental para desarrollo web y mobile. Existen varios clientes HTTP que ayudan con esto. A grandes rasgos se dividen entre clientes GUI como Postman, Insomnia y Paw, y clientes CLI como cURL y HTTPie.
+Docker es una manera de empaquetar tu sistema operativo, dependencias y código de una manera replicable y consistente.
 
-Requester es un cliente HTTP para Sublime Text. Combina elementos de managed UI propios de clientes GUI como colecciones, historial de peticiones, env vars y pruebas automatizadas, con la ligereza y rápidez de clientes CLI. Todo se trabaja con texto, lo cual hace trivial compartir y versionar colecciones de peticiones. Su sintaxis es poderoso y [muy bien documentado](http://docs.python-requests.org/en/master/).
+Empaquetas estas dependencias en __images__. Un Docker image es un archivo que usas para crear contenedores (instancias de images) que corren tu código.
+
+Puedes deployar tu código a producción usando estas imágenes. También puedes combinar images, incluso images hechos por otros, para crear tu ambiente de ejecución más fácilmente.
+
+
+## Ventajas
+- No necesita un "Guest OS": usa poca memoria en comparación con una VM
+  + también usa poco disco!
+- Fácil de replicar y controlar ambiente de ejecución
+- Fácil de compartir con otros miembros de tu equipo
+- Puedes usar los mismos `Dockerfile`s para hacer tus imágenes de desarrollo y producción
+  + los ambientes son tan parecidos que ya ni tengo ambiente de staging!
+
+![Docker vs VM](https://www.researchgate.net/profile/Ling-Hong_Hung/publication/299771559/figure/fig4/AS:359778707623937@1462789336136/A-comparison-of-the-architecture-of-virtual-machines-and-Docker-software.png)
 
 
 ## Preparación
 ### Para OSX
 - Instalar [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac)
 - Instalar Python 3.6 (`brew install python3`)
+
 
 ## Helpers
 ~~~sh
@@ -26,32 +40,9 @@ dksh () {
 ~~~
 
 
-## Resumen
-- Features básicos y sintaxis
-  + Request Body, Query Params, Custom Headers, Cookies
-  + Variables de ambiente
-  + Sintaxis (Requests), Parser, y convenience methods
-- UI y UX
-  + Colecciones de peticiones y navegación
-  + Pestañas de respuesta
-  + Historial de peticiones
-- Pruebas
-  + Test Runner
-    + Sintaxis
-    + JSON Schema
-    + Integración con build process (generar scripts de pruebas)
-  + Métricas (Benchmarking Tool)
-- Portabilidad y Equipos
-  + Exportar a cURL, HTTPie
-  + Importar de cURL
-    * Debugging peticiones AJAX/XHR mandados por tu browser
-    * <https://www.nytimes.com/>, `commentData.json`, `commentCount`
-- Autenticación: Twitter API
-  + Extensiones a Requester, `requests-oauthlib`
-  + <https://developer.twitter.com/en/docs/api-reference-index>
-  + Explorando hyperlinked APIs (HATEOAS)
-- Bonus: GraphQL support
-  + Guardando peticiones a su requester file
-
-
-## Preguntas
+## Temas
+- `Dockerfile`s
+- `docker-compose.yml`
+- '`dev.sh`'
+- '`build.sh`'
+- AWS: `Dockerrun.aws.json` (usando imágenes hechas de los mismos Dockerfiles)
