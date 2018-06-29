@@ -11,6 +11,20 @@ Requester es un cliente HTTP para Sublime Text. Combina elementos de managed UI 
 - Instalar [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac)
 - Instalar Python 3.6 (`brew install python3`)
 
+## Helpers
+~~~sh
+alias dkp='docker ps'
+alias dk='docker-compose'
+
+dkash () {
+  docker exec -it $1 /bin/ash
+}
+
+dksh () {
+  docker exec -it $1 /bin/bash
+}
+~~~
+
 
 ## Resumen
 - Features básicos y sintaxis
